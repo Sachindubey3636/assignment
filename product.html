@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Product List</title>
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <span class="screen-darken"></span>
+    <div id="mobile-nav" class="mobile-nav d-lg-none">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="mobile-menu">
+                    <a class="nav-link mt-5" id="index" href="#" style="font-size: 20px;    font-weight: bold; ">
+                        <b>Untitled UI</b></a>
+                </div>
+
+                <button data-trigger="navbar_main" class="mobile-toggle" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <nav id="navbar_main" class="mobile-offcanvas navbar sticky-md-top  navbar-expand-lg custom-navbar">
+        <div class="container p-0">
+            <div class="offcanvas-header">
+                <button class="btn-close float-end"></button>
+            </div>
+            <ul class="navbar-nav  mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" id="index" href="index.html" style="font-size: 20px;">Untitled UI</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="index" href="index.html">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link " href="product.html" id="productShowcase" role="button" aria-expanded="
+                        false">
+                        Product
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link " href="#" id="productShowcase" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Resource
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="Pricing" href="#">Pricing</a>
+                </li>
+            </ul>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a class="btn btn-secondary" href="#" role="button">Login</a>
+                <a class="btn btn-primary" href="#" role="button">Sign up</a>
+            </div>
+        </div>
+    </nav>
+    <!-- -----------navbar section end--------------- -->
+    <section class="mt-5">
+        <div class="container ">
+            <div class="row my-5 ">
+                <div class="col-md-2 products_name">
+                    <div class="border border-primary  px-3 h-100 mx-auto">
+                        <div class="category">
+                            <b class="text-danger">Category</b>
+                            <div class="form-check">
+                                <input class="form-check-input" onchange="loadData(this.id)" type="radio"
+                                    name="choice" id="electronics" value="Electronic">
+                                <label class="form-check-label" for="electronics">
+                                    Electronics
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" onchange="loadData(this.id)" type="radio"
+                                    name="choice" id="books" value="Books">
+                                <label class="form-check-label" for="books">
+                                    Books
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" onchange="loadData(this.id)" type="radio"
+                                    name="choice" id="home_kitchan" value="Home & Kitchen">
+                                <label class="form-check-label" for="home_kitchan">
+                                    Home & Kitchen
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" value="Toys & Games" onchange="loadData(this.id)"
+                                    type="radio" name="choice" id="toy">
+                                <label class="form-check-label" for="toy">
+                                    Toys & Games
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-10 pb-5 px-4">
+                    <div>
+                        <div class="row row-cols-1 row-cols-md-3 g-4" id="product_list">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery-3.6.0.min.js"></script>
+    <script>
+        function loadData(category_id) {
+
+            var selected_category = '';
+            var category='';
+            if (category_id != 'all') {
+                category = $('#' + category_id);
+                if (category.is(':checked')) {                   
+                    selected_category = category.val();
+                }
+            }
+            //console.log(selected_category);
+            $.ajax({
+                url: "assets/js/json-data.js",
+                type: 'GET',
+                success: function (response) {
+                    var html = '';
+                    var data = JSON.parse(response);
+                    $.each(data, function (i, item) {
+                        if (selected_category != "") {
+                            if(selected_category == item.category){
+                                var status = 'Out of Stock';
+                                if (item.available == true) {
+                                    status = 'Availalbe';
+                                }
+                                html += '<div class="col">';
+                                html += '<div class="card">';
+                                html += '<img src="assets/images/electronics.jpg"';
+                                html += 'class="img-fluid w-75 mx-auto card-img-top  pt-3" alt="">';
+                                html += '<div class="card-body">';
+                                html += '<h6 class="text-danger">' + item.category + '</h6>';
+                                html += '<h6 class="text-danger">' + item.name + '</h6>';
+                                html += '<h6> <i class="fa-solid fa-indian-rupee-sign"></i>' + item.price + '</h6>';
+                                html += '<h6 class="text-success">' + status + '</h6>';
+                                html += '</div>';
+                                html += '</div>';
+                                html += '</div>';
+                            }                           
+                        } else {
+                            var status = 'Out of Stock';
+                            if (item.available == true) {
+                                status = 'Availalbe';
+                            }
+                            html += '<div class="col">';
+                            html += '<div class="card">';
+                            html += '<img src="assets/images/electronics.jpg"';
+                            html += 'class="img-fluid w-75 mx-auto card-img-top  pt-3" alt="">';
+                            html += '<div class="card-body">';
+                            html += '<h6 class="text-danger">' + item.category + '</h6>';
+                            html += '<h6 class="text-danger">' + item.name + '</h6>';
+                            html += '<h6> <i class="fa-solid fa-indian-rupee-sign"></i>' + item.price + '</h6>';
+                            html += '<h6 class="text-success">' + status + '</h6>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
+                        }
+
+                    });
+                    $("#product_list").html(html);
+                },
+                onerror: function (error) {
+                    alert(error);
+                }
+            });
+        }
+        loadData('all');
+    </script>
+</body>
+
+</html>

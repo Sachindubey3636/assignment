@@ -1,0 +1,276 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* font-family: "Open Sans", sans-serif; */
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #212112;
+  background-color: #fff;
+  overflow-x: hidden;
+  position: relative;
+  /* font-family: "Times New Roman", Times, serif; */
+}
+
+p {
+  /* font-family: "Open Sans", sans-serif; */
+  color: black;
+}
+
+a {
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
+}
+
+a:hover {
+  color: #000000;
+}
+
+/*--------------------------------------------------------------
+# Main navBar
+--------------------------------------------------------------*/
+body.offcanvas-active {
+  overflow: hidden;
+}
+
+.offcanvas-header {
+  display: none;
+}
+
+.screen-darken {
+  height: 100%;
+  width: 0%;
+  z-index: 30;
+  position: fixed;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  background-color: rgba(34, 34, 34, 0.6);
+  transition: opacity 0.2s linear, visibility 0.2s, width 2s ease-in;
+}
+
+.screen-darken.active {
+  z-index: 10;
+  transition: opacity 0.3s ease, width 0s;
+  opacity: 1;
+  width: 100%;
+  visibility: visible;
+}
+
+@media all and (min-width: 992px) {
+  .custom-navbar {
+    padding: 0;
+    background: #ffffff;
+    /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1); */
+    /* padding-left: 438px; */
+  }
+
+  .custom-navbar .nav-link {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    /* text-transform: uppercase; */
+    color: #222529;
+    transition: all 0.2s ease-in-out;
+    padding: 0 !important;
+    margin: 15px 0;
+    border-radius: 0 !important;
+  }
+
+  .custom-navbar .nav-link.active,
+  .custom-navbar .nav-link:hover {
+    color: #141313;
+  }
+
+  .custom-navbar .dropdown-menu-end {
+    right: 0;
+    left: auto;
+  }
+
+  .custom-navbar .nav-item .dropdown-menu {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    margin-top: 0;
+  }
+
+  .custom-navbar .dropdown-menu.fade-down {
+    top: 80%;
+    transform: rotateX(-75deg);
+    transform-origin: 0% 0%;
+  }
+
+  .custom-navbar .dropdown-menu.fade-up {
+    top: 180%;
+  }
+
+  .custom-navbar .nav-item:hover .dropdown-menu {
+    transition: 0.3s;
+    opacity: 1;
+    visibility: visible;
+    top: 100%;
+    transform: rotateX(0deg);
+    padding: 0 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-navbar .dropdown-item {
+    padding: 8px 10px;
+  }
+
+  .custom-navbar .dropdown-item:hover,
+  .custom-navbar .dropdown-item:focus {
+    background: #3459e6;
+    color: #fff;
+  }
+
+  .custom-navbar .nav-item {
+    margin: 0;
+    margin-right: 25px;
+  }
+}
+/*--------------------------------------------------------------
+# mobile view 
+--------------------------------------------------------------*/
+@media all and (max-width: 991px) {
+  .top-navbar,
+  .main-navbar {
+    display: none;
+  }
+
+  .offcanvas-header {
+    display: block;
+  }
+
+  .mobile-offcanvas {
+    background: rgba(255, 255, 255, 1);
+    visibility: hidden;
+    transform: translateX(-100%);
+    border-radius: 0;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 1200;
+    width: 80%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    transition: visibility 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .mobile-offcanvas.show {
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  .mobile-offcanvas .container,
+  .mobile-offcanvas .container-fluid {
+    display: block;
+  }
+
+  .mobile-nav {
+    background: rgba(255, 255, 255, 1);
+    padding: 15px 0;
+    z-index: 99;
+  }
+
+  .mobile-nav button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    margin-top: 40px;
+  }
+
+  .mobile-nav button svg {
+    background: rgba(255, 255, 255, 1);
+  }
+
+  .mobile-nav img {
+    height: 68px;
+  }
+}
+.sticky {
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+/*--------------------------------------------------------------
+# icon Section
+--------------------------------------------------------------*/
+.icon {
+  /* color: #3459e6; */
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+.icon i {
+  color: white;
+  background-color: #3459e6;
+  padding: 9px;
+  border-radius: 50%;
+}
+b {
+  font-size: 17px;
+}
+.far {
+  font-size: 20px;
+}
+
+/*--------------------------------------------------------------
+# FAQs Section
+--------------------------------------------------------------*/
+.faq h1 {
+  font-size: 31px;
+  font-weight: 900;
+}
+/*--------------------------------------------------------------
+# get-in-touch section
+--------------------------------------------------------------*/
+.get-in-touch {
+  background: #f5f6f8;
+  padding: 32px;
+}
+/*--------------------------------------------------------------
+# pricing section
+--------------------------------------------------------------*/
+.pricing {
+  color: #3459e6;
+}
+.pricing-bold-text {
+  font-weight: bold;
+  font-size: 15px;
+}
+.products_name {
+  height: 650px;
+}
+
+@media screen and (max-width: 580px) {
+  .products_name {
+    height: 320px;
+  }
+}
+/* .card {
+  width: 200px;
+  height: 200px;
+} */
+.card img {
+  width: 200px;
+  /* height: 100px; */
+  border-bottom: 1px solid black;
+}
+.card-title {
+  text-align: center;
+}
